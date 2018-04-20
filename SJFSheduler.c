@@ -66,7 +66,7 @@ for(j=0;j<n;j++)
 	min=bt[k];
 		for(i=k;i<n;i++)
 			{
-			if (btime<=at[i] && bt[i]>min)
+			if (btime>=at[i] && bt[i]>min)
 				{
 					temp=p[k];
 					p[k]=p[i];
@@ -81,12 +81,14 @@ for(j=0;j<n;j++)
 			}
 	k++;
 }
+
 wt[0]=0;
 for(i=1;i<n;i++)
 {
-		sum=sum+bt[i-1];
-		wt[i]=sum-at[i];
-		wsum=wsum+wt[i];
+		wt[i]=0;
+		for(int j=0;j<i;j++)
+			wt[i]+=bt[j];
+		wsum+=wt[i];
 }
 
 wavg=(wsum/n);
@@ -108,6 +110,6 @@ for(i=0;i<n;i++)
 }
 
 printf("\n\nAVERAGE WAITING TIME : %f",wavg);
-printf("\nAVERAGE TURN AROUND TIME : %f\n",tavg,);
+printf("\nAVERAGE TURN AROUND TIME : %f\n",tavg);
 return 0;
 }
