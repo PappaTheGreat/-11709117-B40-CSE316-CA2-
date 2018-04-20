@@ -29,8 +29,14 @@ for(i=0;i<n;i++)
         
         printf("\nFor P%d\n",i+1);
 	pthread_mutex_lock(&plock);// lock for pre-emption
+	label:
         printf("Arrival time:");
         scanf("%d",&at[i]);
+	if (at[i]==0)
+	{
+		printf("\n Arrival time should not be zero!!!! Re-enter the correct arrival time \n");
+		goto label;
+	}	
         bt[i]=at[i]*2;
         printf("Burst Time:%d\n",bt[i]);
         printf("----------------------------------------");
